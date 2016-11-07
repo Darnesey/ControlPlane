@@ -5,7 +5,23 @@ Created on Oct 12, 2016
 '''
 import queue
 import threading
+import json
 
+
+## Routing Table class to convert into byte_S
+#  Uses json to store the dict into a string
+class Routing_Table:
+    @staticmethod
+    def to_byte_S(dict):
+        return json.dumps(dict)
+
+    @staticmethod
+    def from_byte_S(input):
+        dict = json.loads(input)
+        #LOOK AT THIS SEXY BEAST!
+        #THIS PIECE OF BEAUTY CASTS THE STRING KEYS TO INT KEYS
+        dict = {int(k):({int(x):y for x,y in v.items()}) for k,v in dict.items()}
+        return dict
 
 ## wrapper class for a queue of packets
 class Interface:
@@ -178,13 +194,26 @@ class Router:
     def update_routes(self, p):
         #TODO: add logic to update the routing tables and
         # possibly send out routing updates
+
+        #retrieve data table
+        new_table = Routing_Table.from_byte_S(p.data_S)
+        print("UPDATE: " + str(new_table))
+
+        for key in new_table:
+            #if self.rt_tbl_D.has_key(key):
+                #for inner_key in new_table[key]:
+                    #if self.rt_tbl_D[key].has_key(inner_key):
+            self.rt_tbl_D[key] = new_table[key]
+        print("UPDATED Table...")
+        self.print_routes()
         print('%s: Received routing update %s' % (self, p))
         
     ## send out route update
     # @param i Interface number on which to send out a routing update
     def send_routes(self, i):
         # a sample route update packet
-        p = NetworkPacket(0, 'control', 'Sample routing table packet')
+        data_table = Routing_Table.to_byte_S(self.rt_tbl_D)
+        p = NetworkPacket(0, 'control', data_table)
         try:
             #TODO: add logic to send out a route update
             self.out_intf_L[i].put(p.to_byte_S(), True)
@@ -203,16 +232,21 @@ class Router:
 
         print("          Cost to")
         print("            Host")
-        print("              ", end="")
+        print("           ", end="")
         for key in hosts:
-            print(str(key) + " ")
+            print(str(key) + "  ", end="")
+        print()
+
         for key in hosts:
             for key2 in self.rt_tbl_D[key]:
                 if not is_label:
                     print("Interface  ", end="")
+                    is_label = True
+                    # print(str(key2) + "  " + str(self.rt_tbl_D[key][key2]))
                 print(str(key2) + "  " + str(self.rt_tbl_D[key][key2]))
+            print("           ", end="")
         print()
-        #print(self.rt_tbl_D)
+        print(self.rt_tbl_D)
         
                 
     ## thread target for the host to keep forwarding data
