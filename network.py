@@ -199,15 +199,19 @@ class Router:
         #TODO: print the routes as a two dimensional table for easy inspection
         # Currently the function just prints the route table as a dictionary
         hosts = self.rt_tbl_D.keys()
+        is_label = False;
 
-        print("     Cost to")
-        print("        ", end=""),
+        print("          Cost to")
+        print("            Host")
+        print("              ", end="")
         for key in hosts:
             print(str(key) + " ")
         for key in hosts:
             for key2 in self.rt_tbl_D[key]:
-                print("From  " + str(key2) + " " + str(self.rt_tbl_D[key][key2]))
-
+                if not is_label:
+                    print("Interface  ", end="")
+                print(str(key2) + "  " + str(self.rt_tbl_D[key][key2]))
+        print()
         #print(self.rt_tbl_D)
         
                 
