@@ -28,13 +28,23 @@ class Interface:
     ## @param maxsize - the maximum size of the queue storing packets
     #  @param cost - of the interface used in routing
     def __init__(self, cost=0, maxsize=0):
-        self.queue = queue.Queue(maxsize);
+        self.in_queue = queue.Queue(maxsize);
+        self.out_queue = queue.Queue(maxsize);
         self.cost = cost
     
     ##get packet from the queue interface
     def get(self):
         try:
-            return self.queue.get(False)
+            if in_or_out == 'in':
+                pkt_S = self.in_queue.get(False)
+#                 if pkt_S is not None:
+#                     print('getting packet from the IN queue')
+                return pkt_S
+            else:
+                pkt_S = self.out_queue.get(False)
+#                 if pkt_S is not None:
+#                     print('getting packet from the OUT queue')
+                return pkt_S
         except queue.Empty:
             return None
         
@@ -42,8 +52,14 @@ class Interface:
     # @param pkt - Packet to be inserted into the queue
     # @param block - if True, block until room in queue, if False may throw queue.Full exception
     def put(self, pkt, block=False):
-        self.queue.put(pkt, block)
-        
+        if in_or_out == 'out':
+#             print('putting packet in the OUT queue')
+            self.out_queue.put(pkt, block)
+        else:
+#             print('putting packet in the IN queue')
+            self.in_queue.put(pkt, block)
+
+
 ## Implements a network layer packet (different from the RDT packet 
 # from programming assignment 2).
 # NOTE: This class will need to be extended to for the packet to include
@@ -101,8 +117,7 @@ class Host:
     ##@param addr: address of this node represented as an integer
     def __init__(self, addr):
         self.addr = addr
-        self.in_intf_L = [Interface()]
-        self.out_intf_L = [Interface()]
+        self.intf_L = [Interface()]
         self.stop = False #for thread termination
     
     ## called when printing the object
@@ -114,12 +129,12 @@ class Host:
     # @param data_S: data being transmitted to the network layer
     def udt_send(self, dst_addr, data_S):
         p = NetworkPacket(dst_addr, 'data', data_S)
-        self.out_intf_L[0].put(p.to_byte_S()) #send packets always enqueued successfully
         print('%s: sending packet "%s"' % (self, p))
+        self.intf_L[0].put(p.to_byte_S(), 'out')  # send packets always enqueued successfully
         
     ## receive packet from the network layer
     def udt_receive(self):
-        pkt_S = self.in_intf_L[0].get()
+        pkt_S = self.intf_L[0].get('in')
         if pkt_S is not None:
             print('%s: received packet "%s"' % (self, pkt_S))
        
@@ -138,40 +153,40 @@ class Host:
 
 ## Implements a multi-interface router described in class
 class Router:
-    
+
     ##@param name: friendly router name for debugging
-    # @param intf_count: the number of input and output interfaces 
+    # @param intf_cost_L: outgoing cost of interfaces (and interface number)
+    # @param rt_tbl_D: routing table dictionary (starting reachability), eg. {1: {1: 1}} # packet to host 1 through interface 1 for cost 1
     # @param max_queue_size: max queue length (passed to Interface)
-    def __init__(self, name, in_intf_count, out_intf_cost_L, rt_tbl_D, max_queue_size):
-        self.stop = False #for thread termination
+    def __init__(self, name, intf_cost_L, rt_tbl_D, max_queue_size):
+        self.stop = False  # for thread termination
         self.name = name
-        #create a list of interfaces
-        self.in_intf_L = [Interface(max_queue_size) for _ in range(in_intf_count)]
-        #note the number of outgoing interfaces is set up by out_intf_cost_L
-        self.out_intf_L = []
-        for cost in out_intf_cost_L:
-            self.out_intf_L.append(Interface(cost, max_queue_size))
-        #set up the routing table for connected hosts
+        # create a list of interfaces
+        # note the number of interfaces is set up by out_intf_cost_L
+        self.intf_L = []
+        for cost in intf_cost_L:
+            self.intf_L.append(Interface(cost, max_queue_size))
+        # set up the routing table for connected hosts
         self.rt_tbl_D = rt_tbl_D 
 
     ## called when printing the object
     def __str__(self):
         return 'Router_%s' % (self.name)
 
-    ## look through the content of incoming interfaces and 
+    ## look through the content of incoming interfaces and
     # process data and control packets
     def process_queues(self):
-        for i in range(len(self.in_intf_L)):
+        for i in range(len(self.intf_L)):
             pkt_S = None
-            #get packet from interface i
-            pkt_S = self.in_intf_L[i].get()
-            #if packet exists make a forwarding decision
+            # get packet from interface i
+            pkt_S = self.intf_L[i].get('in')
+            # if packet exists make a forwarding decision
             if pkt_S is not None:
-                p = NetworkPacket.from_byte_S(pkt_S) #parse a packet out
+                p = NetworkPacket.from_byte_S(pkt_S)  # parse a packet out
                 if p.prot_S == 'data':
-                    self.forward_packet(p,i)
+                    self.forward_packet(p, i)
                 elif p.prot_S == 'control':
-                    self.update_routes(p)
+                    self.update_routes(p, i)
                 else:
                     raise Exception('%s: Unknown packet type in packet %s' % (self, p))
             
@@ -182,9 +197,9 @@ class Router:
         try:
             # TODO: Here you will need to implement a lookup into the 
             # forwarding table to find the appropriate outgoing interface
-            # for now we assume the outgoing interface is also i
-            self.out_intf_L[i].put(p.to_byte_S(), True)
-            print('%s: forwarding packet "%s" from interface %d to %d' % (self, p, i, i))
+            # for now we assume the outgoing interface is (i+1)%2
+            self.intf_L[(i + 1) % 2].put(p.to_byte_S(), 'out', True)
+            print('%s: forwarding packet "%s" from interface %d to %d' % (self, p, i, (i + 1) % 2))
         except queue.Full:
             print('%s: packet "%s" lost on interface %d' % (self, p, i))
             pass
@@ -192,32 +207,20 @@ class Router:
     ## forward the packet according to the routing table
     #  @param p Packet containing routing information
     def update_routes(self, p):
-        #TODO: add logic to update the routing tables and
+        # TODO: add logic to update the routing tables and
         # possibly send out routing updates
+        print('%s: Received routing update %s from interface %d' % (self, p, i))
 
-        #retrieve data table
-        new_table = Routing_Table.from_byte_S(p.data_S)
-        print("UPDATE: " + str(new_table))
+        ## send out route update
+        # @param i Interface number on which to send out a routing update
 
-        for key in new_table:
-            #if self.rt_tbl_D.has_key(key):
-                #for inner_key in new_table[key]:
-                    #if self.rt_tbl_D[key].has_key(inner_key):
-            self.rt_tbl_D[key] = new_table[key]
-        print("UPDATED Table...")
-        self.print_routes()
-        print('%s: Received routing update %s' % (self, p))
-        
-    ## send out route update
-    # @param i Interface number on which to send out a routing update
     def send_routes(self, i):
         # a sample route update packet
-        data_table = Routing_Table.to_byte_S(self.rt_tbl_D)
-        p = NetworkPacket(0, 'control', data_table)
+        p = NetworkPacket(0, 'control', 'Sample routing table packet')
         try:
-            #TODO: add logic to send out a route update
-            self.out_intf_L[i].put(p.to_byte_S(), True)
+            # TODO: add logic to send out a route update
             print('%s: sending routing update "%s" from interface %d' % (self, p, i))
+            self.intf_L[i].put(p.to_byte_S(), 'out', True)
         except queue.Full:
             print('%s: packet "%s" lost on interface %d' % (self, p, i))
             pass
