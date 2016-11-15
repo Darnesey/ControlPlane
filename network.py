@@ -251,6 +251,7 @@ class Router:
             if new_cost < cost_now:
                 self.rt_tbl_D[k][i] = new_cost
                 print("Updated route to Host "+str(k)+" through interface "+str(i)+" at cost "+str(new_cost))
+                self.send_routes(i)
         #self.print_routes()
         
     ## send out route update
