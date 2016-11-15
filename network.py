@@ -6,7 +6,21 @@ Created on Oct 12, 2016
 import queue
 import threading
 
+## Routing Table class to convert into byte_S
+#  Uses json to store the dict into a string
+class Routing_Table:
+    @staticmethod
+    def to_byte_S(dict):
+        return json.dumps(dict)
 
+    @staticmethod
+    def from_byte_S(input):
+        dict = json.loads(input)
+        #LOOK AT THIS SEXY BEAST!
+        #THIS PIECE OF BEAUTY CASTS THE STRING KEYS TO INT KEYS
+        dict = {int(k):({int(x):y for x,y in v.items()}) for k,v in dict.items()}
+        return dict
+    
 ## wrapper class for a queue of packets
 class Interface:
     ## @param maxsize - the maximum size of the queue storing packets
