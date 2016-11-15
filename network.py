@@ -241,6 +241,8 @@ class Router:
         for i in range(0, number_of_interfaces):
             print(leading_str + str(i), end=" ")
             if i == 0:
+                leading_str = " INF "
+            if i == 1:
                 leading_str = "     "
             for j in range(1, number_of_hosts + 1):
                 outgoing_interface = list(self.rt_tbl_D.get(j).keys())[i]
