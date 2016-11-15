@@ -223,12 +223,30 @@ class Router:
         except queue.Full:
             print('%s: packet "%s" lost on interface %d' % (self, p, i))
             pass
-        
+
     ## Print routing table
     def print_routes(self):
         print('%s: routing table' % self)
-        #TODO: print the routes as a two dimensional table for easy inspection
+        # TODO: print the routes as a two dimensional table for easy inspection
         # Currently the function just prints the route table as a dictionary
+        print("       Cost to ")
+        print("       ", end="")
+        for i in range(1, len(self.rt_tbl_D) + 1):
+            print(i, end=" ")
+        print("")
+        leading_str = "FROM "
+        for i in range(1, len(self.rt_tbl_D) + 1):
+            print(leading_str + str(i), end=" ")
+            if i == 1:
+                leading_str = "     "
+            for j in range(1, len(self.rt_tbl_D) + 1):
+                interface_cost = self.rt_tbl_D[j]
+                if interface_cost.get(list(interface_cost.keys())[0]) == -1:
+                    print("~", end=" ")
+                else:
+                    print(interface_cost.get(list(interface_cost.keys())[0]), end=" ")
+            print("")
+
         print(self.rt_tbl_D)
         
                 
