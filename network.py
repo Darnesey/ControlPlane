@@ -89,6 +89,9 @@ class NetworkPacket:
     def get_data(self):
         return self.data_S
 
+    def get_dst(self):
+        return self.dst_addr
+
     ## convert packet to a byte string for transmission over links
     def to_byte_S(self):
         byte_S = str(self.dst_addr).zfill(self.dst_addr_S_length)
@@ -210,8 +213,18 @@ class Router:
             # TODO: Here you will need to implement a lookup into the 
             # forwarding table to find the appropriate outgoing interface
             # for now we assume the outgoing interface is (i+1)%2
-            self.intf_L[(i+1)%2].put(p.to_byte_S(), 'out', True)
-            print('%s: forwarding packet "%s" from interface %d to %d' % (self, p, i, (i+1)%2))
+            dst_addr = p.get_dst()
+            possible_interfaces = self.rt_tbl_D[dst_addr]
+
+            cheapest_route_intf = 0
+            cheapest_route_cost = INF
+            for intf, cst in possible_interfaces.items():
+                if cst < cheapest_route_cost:
+                    cheapest_route_intf = intf
+                    cheapest_route_cost = cst
+
+            self.intf_L[cheapest_route_intf].put(p.to_byte_S(), 'out', True)
+            print('%s: forwarding packet "%s" from interface %d to %d with dst %d at cost %d' % (self, p, i, cheapest_route_intf, dst_addr, cheapest_route_cost))
         except queue.Full:
             print('%s: packet "%s" lost on interface %d' % (self, p, i))
             pass
@@ -232,9 +245,9 @@ class Router:
         for k,v in other_table.items():
             cost_now = self.rt_tbl_D[k][i]
             new_cost = INF
-            for i in range(0, len(other_table[k])):
-                if intf_cost + other_table[k][i] < new_cost:
-                    new_cost = intf_cost + other_table[k][i]
+            for j in range(0, len(other_table[k])):
+                if intf_cost + other_table[k][j] < new_cost:
+                    new_cost = intf_cost + other_table[k][j]
             if new_cost < cost_now:
                 self.rt_tbl_D[k][i] = new_cost
                 print("Updated route to Host "+str(k)+" through interface "+str(i)+" at cost "+str(new_cost))
@@ -293,3 +306,4 @@ class Router:
             if self.stop:
                 print (threading.currentThread().getName() + ': Ending')
                 return 
+

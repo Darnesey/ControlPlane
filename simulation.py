@@ -29,7 +29,7 @@ if __name__ == '__main__':
                               rt_tbl_D = router_a_rt_tbl_D, 
                               max_queue_size=router_queue_size)
     object_L.append(router_a)
-    router_b_rt_tbl_D = {1: {0: INF, 1: INF}, 2: {0: 3, 1: INF}} # packet to host 2 through interface 0 for cost 3
+    router_b_rt_tbl_D = {1: {0: INF, 1: INF}, 2: {1: 3, 0: INF}} # packet to host 2 through interface 0 for cost 3
     router_b = network.Router(name='B', 
                               intf_cost_L=[1,3], 
                               rt_tbl_D = router_b_rt_tbl_D, 
@@ -62,11 +62,12 @@ if __name__ == '__main__':
         client.udt_send(2, 'Sample client data %d' % i)
         
     #give the network sufficient time to transfer all packets before quitting
-    sleep(simulation_time)
+    sleep(simulation_time+5)
     
     #print the final routing tables
     for obj in object_L:
         if str(type(obj)) == "<class 'network.Router'>":
+            print("\nFINAL ROUTES:\n\n")
             obj.print_routes()
     
     #join all threads
