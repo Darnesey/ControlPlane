@@ -130,6 +130,7 @@ class Host:
         self.addr = addr
         self.intf_L = [Interface()]
         self.stop = False #for thread termination
+        self.received = False
     
     ## called when printing the object
     def __str__(self):
@@ -148,6 +149,13 @@ class Host:
         pkt_S = self.intf_L[0].get('in')
         if pkt_S is not None:
             print('%s: received packet "%s"' % (self, pkt_S))
+            p = NetworkPacket.from_byte_S(pkt_S)
+            #if data packet receieved, give simulation a way of determining this
+            if p.prot_S == 'data':
+                self.received = True
+
+
+
        
     ## thread target for the host to keep receiving data
     def run(self):
@@ -210,7 +218,7 @@ class Router:
     #  @param i Incoming interface number for packet p
     def forward_packet(self, p, i):
         try:
-            # TODO: Here you will need to implement a lookup into the 
+            # DONE TODO: Here you will need to implement a lookup into the
             # forwarding table to find the appropriate outgoing interface
             # for now we assume the outgoing interface is (i+1)%2
             dst_addr = p.get_dst()
@@ -231,16 +239,18 @@ class Router:
         
     ## forward the packet according to the routing table
     #  @param p Packet containing routing information
+    #  @param i Interface
     def update_routes(self, p, i):
-        #TODO: add logic to update the routing tables and
+        # DONE TODO: add logic to update the routing tables and
         # possibly send out routing updates
+        #print("OLD " + str(self) + " " + str(self.rt_tbl_D))
         data_S = p.get_data()
         #other table now has the routing table of where we came from
         other_table = Routing_Table.from_byte_S(data_S)
-        print('%s: Received routing update %s from interface %d' % (self, p, i))
+        #print('%s: Received routing update %s from interface %d' % (self, p, i))
         #get the cost of using this interface
         intf_cost = self.intf_L[i].get_cost()
-
+        #print("%s: cost to interface %d is %d" % (self,i,intf_cost))
         #iterate through and see if there are any cheaper paths
         for k,v in other_table.items():
             cost_now = self.rt_tbl_D[k][i]
@@ -250,14 +260,15 @@ class Router:
                     new_cost = intf_cost + other_table[k][j]
             if new_cost < cost_now:
                 self.rt_tbl_D[k][i] = new_cost
-                print("Updated route to Host "+str(k)+" through interface "+str(i)+" at cost "+str(new_cost))
+                #print(str(self) + ": Updated route to Host "+str(k)+" through interface "+str(i)+" at cost "+str(new_cost))
                 self.send_routes(i)
+        #print("NEW")
         #self.print_routes()
         
     ## send out route update
     # @param i Interface number on which to send out a routing update
     def send_routes(self, i):
-        # a sample route update packet
+        # routing table update packet
         p = NetworkPacket(0, 'control', Routing_Table.to_byte_S(self.rt_tbl_D))
         try:
             #TODO: add logic to send out a route update
@@ -273,7 +284,7 @@ class Router:
         number_of_hosts = len(self.rt_tbl_D)
         number_of_interfaces = len(self.intf_L)
 
-        # TODO: print the routes as a two dimensional table for easy inspection
+        # DONE TODO: print the routes as a two dimensional table for easy inspection
         # Currently the function just prints the route table as a dictionary
         print("       Cost to Host")
         print("       ", end="")
