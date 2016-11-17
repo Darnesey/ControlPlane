@@ -252,6 +252,7 @@ class Router:
         intf_cost = self.intf_L[i].get_cost()
         #print("%s: cost to interface %d is %d" % (self,i,intf_cost))
         #iterate through and see if there are any cheaper paths
+        updates = False
         for k,v in other_table.items():
             cost_now = self.rt_tbl_D[k][i]
             new_cost = INF
@@ -261,6 +262,9 @@ class Router:
             if new_cost < cost_now:
                 self.rt_tbl_D[k][i] = new_cost
                 #print(str(self) + ": Updated route to Host "+str(k)+" through interface "+str(i)+" at cost "+str(new_cost))
+                updates = True
+        if updates:
+            for i in range(0, len(self.intf_L)):
                 self.send_routes(i)
         #print("NEW")
         #self.print_routes()
