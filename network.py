@@ -271,11 +271,11 @@ class Router:
         # routing table update packet
         p = NetworkPacket(0, 'control', Routing_Table.to_byte_S(self.rt_tbl_D))
         try:
-            #TODO: add logic to send out a route update
-            print('%s: sending routing update "%s" from interface %d' % (self, p, i))
+            #DONE TODO: add logic to send out a route update
+            #print('%s: sending routing update "%s" from interface %d' % (self, p, i))
             self.intf_L[i].put(p.to_byte_S(), 'out', True)
         except queue.Full:
-            print('%s: packet "%s" lost on interface %d' % (self, p, i))
+            #print('%s: packet "%s" lost on interface %d' % (self, p, i))
             pass
 
     ## Print routing table
