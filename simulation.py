@@ -66,7 +66,8 @@ if __name__ == '__main__':
         #wait
         continue
 
-    print("Server received packet. Send response")
+    print("\nServer received packet. Send response")
+    server.received = False #reset for future use
     server.udt_send(1, 'Sample response data')
 
     #give the network sufficient time to transfer all packets before quitting
