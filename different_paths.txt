@@ -1,0 +1,157 @@
+Created link Link Host_1-0 - Router_A-0
+Created link Link Host_2-0 - Router_A-1
+Created link Link Host_2-0 - Router_D-0
+Created link Link Router_A-2 - Router_B-0
+Created link Link Router_A-3 - Router_C-0
+Created link Link Router_B-1 - Router_D-1
+Created link Link Router_C-1 - Router_D-2
+Host_1: Starting
+Host_2: Starting
+Host_2: Starting
+Router_A: Starting
+Router_B: Starting
+Router_C: Starting
+Router_D: Starting
+Network: Starting
+Link Host_1-0 - Router_A-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 9999999, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 9999999, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 0 -> Host_1, 0
+Link Host_2-0 - Router_A-1: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 9999999, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 9999999, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 1 -> Host_2, 0
+Link Host_2-0 - Router_D-0: transmitting packet "000002{"1": {"0": 9999999, "1": 9999999, "2": 9999999}, "2": {"0": 9999999, "1": 9999999, "2": 9999999}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 0 -> Host_2, 0
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 9999999, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 9999999, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 2 -> Router_B, 0
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 9999999, "1": 9999999}, "2": {"0": 9999999, "1": 9999999}, "3": {"0": 9999999, "1": 9999999}}" on Router_B 0 -> Router_A, 2
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 9999999, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 9999999, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 3 -> Router_C, 0
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 9999999, "1": 9999999}, "2": {"0": 9999999, "1": 9999999}, "3": {"0": 9999999, "1": 9999999}}" on Router_C 0 -> Router_A, 3
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 9999999, "1": 9999999}, "2": {"0": 9999999, "1": 9999999}, "3": {"0": 9999999, "1": 9999999}}" on Router_B 1 -> Router_D, 1
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 9999999, "1": 9999999, "2": 9999999}, "2": {"0": 9999999, "1": 9999999, "2": 9999999}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 1 -> Router_B, 1
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 9999999, "1": 9999999}, "2": {"0": 9999999, "1": 9999999}, "3": {"0": 9999999, "1": 9999999}}" on Router_C 1 -> Router_D, 2
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 9999999, "1": 9999999, "2": 9999999}, "2": {"0": 9999999, "1": 9999999, "2": 9999999}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 2 -> Router_C, 1
+Host_1: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 9999999, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 9999999, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}"
+Host_2: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 9999999, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 9999999, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}"
+Host_2: received packet "000002{"1": {"0": 9999999, "1": 9999999, "2": 9999999}, "2": {"0": 9999999, "1": 9999999, "2": 9999999}, "3": {"0": 1, "1": 9999999, "2": 9999999}}"
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 2, "1": 9999999}, "2": {"0": 2, "1": 9999999}, "3": {"0": 9999999, "1": 9999999}}" on Router_B 0 -> Router_A, 2
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 2, "1": 9999999}, "2": {"0": 2, "1": 9999999}, "3": {"0": 9999999, "1": 9999999}}" on Router_C 0 -> Router_A, 3
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 2, "1": 9999999}, "2": {"0": 2, "1": 9999999}, "3": {"0": 9999999, "1": 9999999}}" on Router_B 1 -> Router_D, 1
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 2, "1": 9999999}, "2": {"0": 2, "1": 9999999}, "3": {"0": 9999999, "1": 9999999}}" on Router_C 1 -> Router_D, 2
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 2, "1": 9999999}, "2": {"0": 2, "1": 9999999}, "3": {"0": 9999999, "1": 3}}" on Router_B 0 -> Router_A, 2
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 3 -> Router_C, 0
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 2, "1": 9999999}, "2": {"0": 2, "1": 9999999}, "3": {"0": 9999999, "1": 2}}" on Router_C 0 -> Router_A, 3
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 2, "1": 9999999}, "2": {"0": 2, "1": 9999999}, "3": {"0": 9999999, "1": 3}}" on Router_B 1 -> Router_D, 1
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 9999999}, "2": {"0": 9999999, "1": 3, "2": 9999999}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 1 -> Router_B, 1
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 2, "1": 9999999}, "2": {"0": 2, "1": 9999999}, "3": {"0": 9999999, "1": 2}}" on Router_C 1 -> Router_D, 2
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 9999999}, "2": {"0": 9999999, "1": 3, "2": 9999999}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 2 -> Router_C, 1
+Link Host_1-0 - Router_A-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 0 -> Host_1, 0
+Link Host_2-0 - Router_A-1: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 1 -> Host_2, 0
+Host_1: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}"
+Host_2: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}"
+Link Host_2-0 - Router_D-0: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 9999999}, "2": {"0": 9999999, "1": 3, "2": 9999999}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 0 -> Host_2, 0
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 9999999}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 9999999}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 2 -> Router_B, 0
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 2, "1": 5}, "2": {"0": 2, "1": 5}, "3": {"0": 9999999, "1": 3}}" on Router_B 0 -> Router_A, 2
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 3 -> Router_C, 0
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 2, "1": 4}, "2": {"0": 2, "1": 4}, "3": {"0": 9999999, "1": 2}}" on Router_C 0 -> Router_A, 3
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 2, "1": 5}, "2": {"0": 2, "1": 5}, "3": {"0": 9999999, "1": 3}}" on Router_B 1 -> Router_D, 1
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 1 -> Router_B, 1
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 2, "1": 4}, "2": {"0": 2, "1": 4}, "3": {"0": 9999999, "1": 2}}" on Router_C 1 -> Router_D, 2
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 2 -> Router_C, 1Host_2: received packet "000002{"1": {"0": 9999999, "1": 3, "2": 9999999}, "2": {"0": 9999999, "1": 3, "2": 9999999}, "3": {"0": 1, "1": 9999999, "2": 9999999}}"
+
+Link Host_1-0 - Router_A-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 0 -> Host_1, 0
+Link Host_2-0 - Router_A-1: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 1 -> Host_2, 0
+Link Host_2-0 - Router_D-0: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 9999999, "2": 9999999}}" on Router_D 0 -> Host_2, 0
+Host_2: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}"
+Host_1: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}"
+Host_2: received packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 9999999, "2": 9999999}}"
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 9999999, "3": 9999999}}" on Router_A 2 -> Router_B, 0
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 9999999}}" on Router_A 3 -> Router_C, 0
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 4, "2": 9999999}}" on Router_D 1 -> Router_B, 1
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 4, "2": 9999999}}" on Router_D 2 -> Router_C, 1
+Link Host_1-0 - Router_A-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 9999999}}" on Router_A 0 -> Host_1, 0
+Link Host_2-0 - Router_A-1: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 9999999}}" on Router_A 1 -> Host_2, 0
+Link Host_2-0 - Router_D-0: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 4, "2": 9999999}}" on Router_D 0 -> Host_2, 0
+Host_2: received packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 4, "2": 9999999}}"
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 9999999}}" on Router_A 2 -> Router_B, 0
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 3}}" on Router_A 3 -> Router_C, 0
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 2, "1": 4}, "2": {"0": 2, "1": 4}, "3": {"0": 5, "1": 2}}" on Router_C 0 -> Router_A, 3
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 4, "2": 4}}" on Router_D 1 -> Router_B, 1
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 2, "1": 4}, "2": {"0": 2, "1": 4}, "3": {"0": 5, "1": 2}}" on Router_C 1 -> Router_D, 2
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 4, "2": 4}}" on Router_D 2 -> Router_C, 1
+Link Host_1-0 - Router_A-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 3}}" on Router_A 0 -> Host_1, 0
+Link Host_2-0 - Router_A-1: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 3}}" on Router_A 1 -> Host_2, 0
+Link Host_2-0 - Router_D-0: transmitting packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 4, "2": 4}}" on Router_D 0 -> Host_2, 0
+Host_2: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 9999999}}"
+Host_2: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 3}}"
+Host_1: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 9999999}}"
+Host_1: received packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 3}}"
+Host_2: received packet "000002{"1": {"0": 9999999, "1": 3, "2": 4}, "2": {"0": 9999999, "1": 3, "2": 4}, "3": {"0": 1, "1": 4, "2": 4}}"
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 1, "1": 9999999, "2": 3, "3": 3}, "2": {"0": 9999999, "1": 1, "2": 3, "3": 3}, "3": {"0": 9999999, "1": 9999999, "2": 4, "3": 3}}" on Router_A 2 -> Router_B, 0
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 2, "1": 5}, "2": {"0": 2, "1": 5}, "3": {"0": 5, "1": 3}}" on Router_B 0 -> Router_A, 2
+Link Router_A-3 - Router_C-0: transmitting packet "000002{"1": {"0": 2, "1": 4}, "2": {"0": 2, "1": 4}, "3": {"0": 4, "1": 2}}" on Router_C 0 -> Router_A, 3
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 2, "1": 5}, "2": {"0": 2, "1": 5}, "3": {"0": 5, "1": 3}}" on Router_B 1 -> Router_D, 1
+Link Router_C-1 - Router_D-2: transmitting packet "000002{"1": {"0": 2, "1": 4}, "2": {"0": 2, "1": 4}, "3": {"0": 4, "1": 2}}" on Router_C 1 -> Router_D, 2
+Link Router_B-1 - Router_D-1: transmitting packet "000002{"1": {"0": 2, "1": 5}, "2": {"0": 2, "1": 5}, "3": {"0": 4, "1": 3}}" on Router_B 1 -> Router_D, 1
+Link Router_A-2 - Router_B-0: transmitting packet "000002{"1": {"0": 2, "1": 5}, "2": {"0": 2, "1": 5}, "3": {"0": 4, "1": 3}}" on Router_B 0 -> Router_A, 2
+Host_1: sending packet "000031Sample client data 0"
+Link Host_1-0 - Router_A-0: transmitting packet "000031Sample client data 0" on Host_1 0 -> Router_A, 0
+Router_A: forwarding packet "000031Sample client data 0" from interface 0 to 3 with dst 3 at cost 3
+Link Router_A-3 - Router_C-0: transmitting packet "000031Sample client data 0" on Router_A 3 -> Router_C, 0
+Router_C: forwarding packet "000031Sample client data 0" from interface 0 to 1 with dst 3 at cost 2
+Link Router_C-1 - Router_D-2: transmitting packet "000031Sample client data 0" on Router_C 1 -> Router_D, 2
+Router_D: forwarding packet "000031Sample client data 0" from interface 2 to 0 with dst 3 at cost 1
+Link Host_2-0 - Router_D-0: transmitting packet "000031Sample client data 0" on Router_D 0 -> Host_2, 0
+Host_2: received packet "000031Sample client data 0"
+
+Server received packet. Send response
+Host_2: sending packet "000011Sample response data"
+Link Host_2-0 - Router_D-0: transmitting packet "000011Sample response data" on Host_2 0 -> Router_D, 0
+Router_D: forwarding packet "000011Sample response data" from interface 0 to 1 with dst 1 at cost 3
+Link Router_B-1 - Router_D-1: transmitting packet "000011Sample response data" on Router_D 1 -> Router_B, 1
+Router_B: forwarding packet "000011Sample response data" from interface 1 to 0 with dst 1 at cost 2
+Link Router_A-2 - Router_B-0: transmitting packet "000011Sample response data" on Router_B 0 -> Router_A, 2Router_A: forwarding packet "000011Sample response data" from interface 2 to 0 with dst 1 at cost 1
+
+Link Host_1-0 - Router_A-0: transmitting packet "000011Sample response data" on Router_A 0 -> Host_1, 0
+Host_1: received packet "000011Sample response data"
+
+FINAL ROUTES:
+
+
+Router_A: routing table
+       Cost to Host
+       1 2 3 
+FROM 0 1 ~ ~ 
+ INF 1 ~ 1 ~ 
+     2 3 3 4 
+     3 3 3 3 
+
+FINAL ROUTES:
+
+
+Router_B: routing table
+       Cost to Host
+       1 2 3 
+FROM 0 2 2 4 
+ INF 1 5 5 3 
+
+FINAL ROUTES:
+
+
+Router_C: routing table
+       Cost to Host
+       1 2 3 
+FROM 0 2 2 4 
+ INF 1 4 4 2 
+
+FINAL ROUTES:
+
+
+Router_D: routing table
+       Cost to Host
+       1 2 3 
+FROM 0 ~ ~ 1 
+ INF 1 3 3 4 
+     2 4 4 4 
+Host_2: Ending
+Router_A: Ending
+Router_B: Ending
+Host_1: Ending
+Host_2: Ending
+Router_D: Ending
+Network: Ending
+Router_C: Ending
+All simulation threads joined
