@@ -3,8 +3,8 @@ Created on Oct 12, 2016
 
 @author: mwitt_000
 '''
-import network
-import link
+import network_1 as network
+import link_1 as link
 import threading
 from time import sleep
 import sys
@@ -49,7 +49,8 @@ if __name__ == '__main__':
     #start all the objects
     thread_L = []
     for obj in object_L:
-        thread_L.append(threading.Thread(name=obj.__str__(), target=obj.run)) 
+        thread_L.append(threading.Thread(name=obj.__str__(), target=obj.run))
+        print("Starting object %s" % str(obj))
     
     for t in thread_L:
         t.start()
@@ -75,7 +76,7 @@ if __name__ == '__main__':
     
     #print the final routing tables
     for obj in object_L:
-        if str(type(obj)) == "<class 'network.Router'>":
+        if str(type(obj)) == "<class 'network_1.Router'>":
             print("\nFINAL ROUTES:\n\n")
             obj.print_routes()
     
