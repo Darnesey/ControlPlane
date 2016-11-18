@@ -3,8 +3,8 @@ Created on Oct 12, 2016
 
 @author: mwitt_000
 '''
-import network
-import link
+import network_2 as network
+import link_2 as link
 import threading
 from time import sleep
 import sys
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     
     #print the final routing tables
     for obj in object_L:
-        if str(type(obj)) == "<class 'network.Router'>":
+        if str(type(obj)) == "<class 'network_2.Router'>":
             print("\nFINAL ROUTES:\n\n")
             obj.print_routes()
     
