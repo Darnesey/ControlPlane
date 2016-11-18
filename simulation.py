@@ -91,8 +91,7 @@ if __name__ == '__main__':
         host_1.udt_send(3, 'Sample client data %d' % i)
 
     while not host_3.received:
-        #wait
-        continue
+        continue #to wait
 
     print("\nServer received packet. Send response")
     host_3.received = False #reset for future use
